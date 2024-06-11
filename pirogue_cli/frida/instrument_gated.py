@@ -37,9 +37,10 @@ class FridaApplication:
         )
         parser.add_argument('-o', '--output', help='The output directory')
         parser.add_argument('-i', '--iface', help='The network interface to capture', default=None)
+        parser.add_argument('--disable-screenrecord', action='store_false', help='Use to disable screen recording')
         self.options = parser.parse_args()
 
-        self.capture_manager = CaptureManager(self.options.output, self.options.iface)
+        self.capture_manager = CaptureManager(self.options.output, self.options.iface, self.options.disable_screenrecord)
 
     def save_data(self):
         self.capture_manager.stop_capture()
